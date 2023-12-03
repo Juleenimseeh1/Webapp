@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Summary</title>
+</head>
+<body>
+    <h1>Quiz Summary</h1>
+    <ul>
+        {% for question in questions %}
+            <li>
+                <strong>Question {{ loop.index }}:</strong>
+                {% if question['user_answer'] == question['correct_answer'] %}
+                    <span style="color: green;">Correct</span>
+                {% else %}
+                    <span style="color: red;">Incorrect</span>
+                {% endif %}
+                <p>{{ question['explanation'] }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

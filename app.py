@@ -85,20 +85,22 @@ for index, question in enumerate(questions):
     html_content = quiz_template.render(
         question=question,
         question_index=index + 1,
-        next_question_url=f"{repo_name}/question_{index + 2}.html" if index + 2 <= len(questions) else f"{repo_name}/summary.html"
+        next_question_url=f"question_{index + 2}.html" if index + 2 <= len(questions) else "summary.html"
     )
     with open(f"docs/question_{index + 1}.html", "w") as html_file:
         html_file.write(html_content)
+
+# Generate HTML file for the index page
+html_content = index_template.render(next_question_url="question_1.html")
+with open("docs/index.html", "w") as html_file:
+    html_file.write(html_content)
 
 # Generate HTML file for the answer page
 html_content = answer_template.render(question=questions[0])  # Pass a sample question for rendering
 with open("docs/answer.html", "w") as html_file:
     html_file.write(html_content)
 
-# Generate HTML file for the index page
-html_content = index_template.render(next_question_url=f"{repo_name}/question_1.html")
-with open("docs/index.html", "w") as html_file:
-    html_file.write(html_content)
+
 
 # Generate HTML file for the summary page
 summary_content = summary_template.render(questions=questions)

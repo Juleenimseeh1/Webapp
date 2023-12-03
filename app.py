@@ -77,8 +77,7 @@ summary_template = template_env.get_template("summary.html")
 # Create 'docs' folder if not exists
 os.makedirs("docs", exist_ok=True)
 
-# Repository name
-repo_name = "Webapp"
+
 
 # Generate HTML files for each question
 for index, question in enumerate(questions):
